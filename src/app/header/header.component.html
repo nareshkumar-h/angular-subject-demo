@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">TaskApp</a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+
+            <ng-template #notloggedIn>
+                <li class="nav-item">
+                    <a class="nav-link">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="login">Register</a>
+                </li>
+
+            </ng-template>
+            <ng-container *ngIf="(user | async)  let userDetail else notloggedIn">
+
+                <li class="nav-item" *ngIf="userDetail.role=='USER'">
+                    <a class="nav-link">My Orders</a>`
+                </li>
+                <li class="nav-item" *ngIf="userDetail.role=='ADMIN'">
+                    <a class="nav-link">All Orders</a>`
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Welcome {{userDetail.name}} ( {{userDetail.role}})</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="logout()">Logout</a>
+                </li>
+            </ng-container>
+
+
+        </ul>
+    </div>
+</nav>

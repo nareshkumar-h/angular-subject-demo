@@ -1,0 +1,7 @@
+<p>login works!</p>
+
+<div *ngIf="(user | async) as userDetail">
+    {{userDetail | json}}
+</div>"
+<button (click)="login()">User</button>
+<button (click)="admin()">Admin</button>
